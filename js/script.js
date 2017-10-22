@@ -2,7 +2,6 @@ const board = document.getElementById("board");
 let boxes = document.getElementsByClassName("box");
 let activePlayerNumber = 0;
 let = activePlayerDiv = "";
-// const boxes = document.getElementsByClassName("boxes");
 
 function hideBoard(){
   board.setAttribute("style", "display: none");
@@ -40,16 +39,6 @@ function hideStartScreen(){
 
 function showBoard(){
   board.setAttribute("style", "display: block");
-  // const div = document.createElement("div");
-  // const header = document.createElement("header");
-  // const h1 = document.createElement("h1");
-  // div.id = "board";
-  // div.className = "board";
-  //
-  // h1.textContent = "Tic Tac Toe";
-  // body.appendChild(div);
-  // div.appendChild(header);
-  // header.appendChild(h1);
 };
 
 function getRandomPlayer(){
@@ -77,14 +66,7 @@ function setActivePlayerNumber(){
 
     activePlayerDiv.classList.toggle("active");
   };
-
-  console.log(activePlayerNumber);
 };
-
-// function displayedActivePlayer(){
-//   activePlayerDiv = document.getElementById("player" + String(activePlayerNumber));
-//   activePlayerDiv.classList.add("active");
-// };
 
 function startGame(){
   hideStartScreen();
@@ -92,7 +74,7 @@ function startGame(){
   setActivePlayerNumber();
 };
 
-function boxHover(){
+function boxEvents(){
 
   boxes = document.getElementsByClassName("box");
 
@@ -106,59 +88,34 @@ function boxHover(){
       boxes[i].addEventListener("mouseout", function(event) {
         toggleBoxBackground(event.target);
       });
-    };
-  };
-};
 
-function boxClick(){
-
-  boxes = document.getElementsByClassName("box");
-
-  for (let i = 0; i < boxes.length; i++){
-
-    if (!boxes[i].classList.contains("box-filled-1") || !boxes[i].classList.contains("box-filled-2")){
-      boxes[i].addEventListener("click", function(event) {
-        playerMove(event.target);
+      boxes[i].addEventListener("click", function clickableBox(event) {
+        const box = event.target;
+        box.classList.add("box-filled-" + activePlayerNumber);
+        setActivePlayerNumber();
+        box.removeEventListener("click", clickableBox);
+        box.setAttribute("style", "cursor: auto");
       });
     };
-    // boxes[i].addEventListener("click", function(event) {
-    //   if(activePlayer === 1 && !event.target.classList.contains("box-filled-1") || !event.target.classList.contains("box-filled-2")){
-    //     event.target.classList.add("box-filled-1");
-    //     activePLayer = 2;
-    //   } else if (activePlayer === 2 && event.target.classList.contains("box-2") || !event.target.classList.contains("box-filled-2")) {
-    //     event.target.classList.add("box-filled-2");
-    //     activePLayer = 1;
-    //   };
-    // });
-
   };
 };
 
 function toggleBoxBackground(box){
+
   if(activePlayerNumber === 1 && !box.classList.contains("box-filled-1") && !box.classList.contains("box-filled-2")){
     box.classList.toggle("box-1");
-  }
+  };
+
   if (activePlayerNumber === 2 && !box.classList.contains("box-filled-1") && !box.classList.contains("box-filled-2")){
     box.classList.toggle("box-2");
   };
-};
 
-function playerMove(box){
-  addBoxClassName(box);
-  setActivePlayerNumber();
-  // boxHover();
-  // boxClick();
-};
-
-function addBoxClassName(box){
-  box.classList.add("box-filled-" + activePlayerNumber);
 };
 
 function runProgram(){
   hideBoard();
   showStartScreen();
-  boxHover();
-  boxClick();
+  boxEvents();
 };
 
 runProgram();
