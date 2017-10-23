@@ -112,16 +112,16 @@ function toggleBoxBackground(box){
 
 };
 
-//If these boxes have the same value we have a winner
-  //Horizontal
+//If three boxes in a row have the same value, then we have a winner
+  //Horizontal rows
     //1, 2, 3
     //4, 5, 6
     //7, 8, 9
-  //Vertical
+  //Vertical rows
     //1, 4, 7
     //2, 5, 8
     //3, 6, 9
-  //Diagonal
+  //Diagonal rows
     //1, 5, 9
     //3, 5, 7
 //If there isn't a winner it's a draw
