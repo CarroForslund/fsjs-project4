@@ -1,5 +1,5 @@
 const board = document.getElementById("board");
-let boxes = document.getElementsByClassName("box");
+// let boxes = document.getElementsByClassName("box");
 let activePlayerNumber = 0;
 let = activePlayerDiv = "";
 
@@ -76,7 +76,7 @@ function startGame(){
 
 function boxEvents(){
 
-  boxes = document.getElementsByClassName("box");
+  const boxes = document.getElementsByClassName("box");
 
   for (let i = 0; i < boxes.length; i++){
 
@@ -95,6 +95,7 @@ function boxEvents(){
         setActivePlayerNumber();
         box.removeEventListener("click", clickableBox);
         box.setAttribute("style", "cursor: auto");
+        resultTracking();
       });
     };
   };
@@ -112,19 +113,55 @@ function toggleBoxBackground(box){
 
 };
 
-//If three boxes in a row have the same value, then we have a winner
-  //Horizontal rows
-    //1, 2, 3
-    //4, 5, 6
-    //7, 8, 9
-  //Vertical rows
-    //1, 4, 7
-    //2, 5, 8
-    //3, 6, 9
-  //Diagonal rows
-    //1, 5, 9
-    //3, 5, 7
-//If there isn't a winner it's a draw
+function resultTracking (){
+  let winner = "";
+  const playerO = "box-filled-1";
+  const playerX = "box-filled-2";
+  const box1 = document.getElementById("box1");
+  const box2 = document.getElementById("box2");
+  const box3 = document.getElementById("box3");
+  const box4 = document.getElementById("box4");
+  const box5 = document.getElementById("box5");
+  const box6 = document.getElementById("box6");
+  const box7 = document.getElementById("box7");
+  const box8 = document.getElementById("box8");
+  const box9 = document.getElementById("box9");
+
+  if (box1.classList.contains(playerO) && box2.classList.contains(playerO) && box3.classList.contains(playerO)
+    || box4.classList.contains(playerO) && box5.classList.contains(playerO) && box6.classList.contains(playerO)
+    || box7.classList.contains(playerO) && box8.classList.contains(playerO) && box9.classList.contains(playerO)
+    || box1.classList.contains(playerO) && box4.classList.contains(playerO) && box7.classList.contains(playerO)
+    || box2.classList.contains(playerO) && box5.classList.contains(playerO) && box8.classList.contains(playerO)
+    || box3.classList.contains(playerO) && box6.classList.contains(playerO) && box9.classList.contains(playerO)
+    || box1.classList.contains(playerO) && box5.classList.contains(playerO) && box9.classList.contains(playerO)
+    || box3.classList.contains(playerO) && box5.classList.contains(playerO) && box7.classList.contains(playerO)){
+        console.log("O won!");
+        winner = "O";
+  } else if (box1.classList.contains(playerX) && box2.classList.contains(playerX) && box3.classList.contains(playerX)
+    || box4.classList.contains(playerX) && box5.classList.contains(playerX) && box6.classList.contains(playerX)
+    || box7.classList.contains(playerX) && box8.classList.contains(playerX) && box9.classList.contains(playerX)
+    || box1.classList.contains(playerX) && box4.classList.contains(playerX) && box7.classList.contains(playerX)
+    || box2.classList.contains(playerX) && box5.classList.contains(playerX) && box8.classList.contains(playerX)
+    || box3.classList.contains(playerX) && box6.classList.contains(playerX) && box9.classList.contains(playerX)
+    || box1.classList.contains(playerX) && box5.classList.contains(playerX) && box9.classList.contains(playerX)
+    || box3.classList.contains(playerX) && box5.classList.contains(playerX) && box7.classList.contains(playerX)){
+        console.log("X won!");
+  };
+  //If three boxes in a row have the same value, then we have a winner
+    //Horizontal rows
+      //1, 2, 3
+      //4, 5, 6
+      //7, 8, 9
+    //Vertical rows
+      //1, 4, 7
+      //2, 5, 8
+      //3, 6, 9
+    //Diagonal rows
+      //1, 5, 9
+      //3, 5, 7
+  //If there isn't a winner it's a draw
+
+};
 
 function runProgram(){
   hideBoard();
