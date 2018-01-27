@@ -16,6 +16,7 @@ h1 {
   width: 1.875em; }
 
 .button {
+  cursor: pointer;
   background: #fff;
   border-radius: 4px;
   box-shadow: 0 2px 0 rgba(0, 0, 0, 0.1);
@@ -86,6 +87,23 @@ h1 {
   .board h1 {
     margin-top: 0.3em; }
 
+input {
+  margin: 1em;
+}
+
+#player-names {
+  padding: 0 2em; }
+
+#player-name {
+  display: inline-block;
+  margin: 2em;
+  float: left; }
+
+#computer {
+  isplay: inline-block;
+  margin: 2em;
+  float: right; }
+
 .players {
   color: rgba(0, 0, 0, 0.2);
   text-align: center;
@@ -133,9 +151,11 @@ h1 {
       margin-right: 0; }
     .boxes .box-filled-1,
     .boxes .box-1:hover {
-      background-color: #FFA000;
       background-image: url(../img/o.svg); }
     .boxes .box-filled-2,
     .boxes .box-2:hover {
-      background-color: #3688C3;
       background-image: url(../img/x.svg); }
+    .boxes .box-filled-1 {
+      background-color: #FFA000; }
+    .boxes .box-filled-2 {
+      background-color: #3688C3; }
